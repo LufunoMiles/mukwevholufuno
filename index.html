@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mukwevho Lufuno | Software Developer</title>
+  <meta name="description" content="Computer Science Student, Front-end Developer, and Creative Problem Solver based in South Africa">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+    <style>
+        /* CSS Variables */
+:root {
+  --primary: #22c55e;
+  --primary-light: #4ade80;
+  --primary-dark: #16a34a;
+  --background: #f8fdf9;
+  --foreground: #1a2e1f;
+  --card: #ffffff;
+  --card-foreground: #1a2e1f;
+  --muted: #f1f8f3;
+  --muted-foreground: #5a6b5f;
+  --secondary: #e8f5eb;
+  --secondary-foreground: #2d4a33;
+  --border: #d4e5d9;
+  --input: #e8f5eb;
+  --radius: 0.75rem;
+}
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Utilities */
+.container {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+/* Navigation */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: #d4e5d9;
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.767);
+  backdrop-filter: blur(40px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.nav-container {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.logo-text {
+  color: var(--foreground);
+}
+
+.logo-accent {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: none;
+  list-style: none;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.nav-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--foreground);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-toggle {
+  display: flex;
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--foreground);
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .nav-toggle {
+    display: none;
+  }
+}
+
+.nav-toggle svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.mobile-menu {
+  background: rgba(248, 253, 249, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-nav-links {
+  list-style: none;
+  padding: 1rem 0;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  transition: all 0.2s ease;
+}
+
+.mobile-nav-link:hover {
+  color: var(--foreground);
+  background: var(--muted);
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.hero-blob-1 {
+  top: 25%;
+  right: 25%;
+  width: 24rem;
+  height: 24rem;
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.hero-blob-2 {
+  bottom: 25%;
+  left: 25%;
+  width: 18rem;
+  height: 18rem;
+  background: rgba(74, 222, 128, 0.1);
+}
+
+.hero-content {
+  padding: 5rem 0;
+}
+
+.hero-grid {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  font-size: 0.875rem;
+  font-weight: 500;
+  width: fit-content;
+}
+
+.status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 3.75rem;
+  }
+}
+
+.hero-description {
+  font-size: 1.125rem;
+  color: var(--muted-foreground);
+  line-height: 1.75;
+  max-width: 32rem;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.hero-socials {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.social-label {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.social-links {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--secondary);
+  color: var(--foreground);
+  transition: all 0.2s ease;
+}
+
+.social-link:hover {
+  background: var(--primary);
+  color: var(--foreground);
+}
+
+.social-link svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Avatar */
+.hero-avatar-container {
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 1024px) {
+  .hero-avatar-container {
+    justify-content: flex-end;
+  }
+}
+
+.avatar-wrapper {
+  position: relative;
+}
+
+.avatar-ring {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.avatar-ring-1 {
+  inset: -2rem;
+  border: 2px dashed rgba(34, 197, 94, 0.2);
+  animation: spin 30s linear infinite;
+}
+
+.avatar-ring-2 {
+  inset: -4rem;
+  border: 1px solid rgba(34, 197, 94, 0.1);
+  animation: spin 40s linear infinite reverse;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.avatar-circle {
+  position: relative;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+@media (min-width: 640px) {
+  .avatar-circle {
+    width: 20rem;
+    height: 20rem;
+  }
+}
+
+.avatar-content {
+  text-align: center;
+}
+
+.avatar-initials {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 auto 0.5rem;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+.avatar-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.avatar-role {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--foreground);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+  background: var(--secondary);
+  border-color: var(--primary);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--muted-foreground);
+}
+
+.btn-ghost:hover {
+  background: var(--secondary);
+  color: var(--foreground);
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.btn-icon-sm {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+/* Section Headers */
+.section-header {
+  margin-bottom: 4rem;
+}
+
+.section-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+@media (min-width: 640px) {
+  .section-title {
+    font-size: 2.25rem;
+  }
+}
+
+/* About Section */
+.about {
+  padding: 6rem 0;
+  background: var(--muted);
+}
+
+.about-grid {
+  display: grid;
+  gap: 4rem;
+}
+
+@media (min-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.about-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.bio-text {
+  color: var(--muted-foreground);
+  line-height: 1.75;
+}
+
+.bio-text strong {
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding-top: 1.5rem;
+}
+
+.highlight-card {
+  padding: 1rem;
+  background: var(--card);
+  border: 1px solid rgba(212, 229, 217, 0.5);
+  border-radius: var(--radius);
+}
+
+.highlight-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.highlight-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.highlight-desc {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+}
+
+/* Timeline */
+.about-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.timeline-heading {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.375rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 1px;
+  background: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -2rem;
+  top: 0.375rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 4px var(--background);
+}
+
+.timeline-year {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.timeline-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0.25rem 0;
+}
+
+.timeline-desc {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+/* Skills Section */
+.skills {
+  padding: 6rem 0;
+}
+
+.skills-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.skill-card {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 229, 217, 0.5);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: border-color 0.2s ease;
+}
+
+.skill-card:hover {
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.skill-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.skill-icon-wrapper {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.skill-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--primary);
+}
+
+.skill-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.skill-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.skill-bar-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.skill-name {
+  font-weight: 500;
+}
+
+.skill-percent {
+  color: var(--muted-foreground);
+}
+
+.skill-bar-track {
+  height: 0.5rem;
+  background: var(--secondary);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 9999px;
+  width: 0;
+  transition: width 1s ease-out;
+}
+
+.skill-bar-item.visible .skill-bar-fill {
+  width: var(--level);
+}
+
+/* Projects Section */
+.projects {
+  padding: 6rem 0;
+  background: var(--muted);
+}
+
+.projects-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 229, 217, 0.5);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover {
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.project-icon-wrapper {
+  width: 100%;
+  height: 8rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-icon-wrapper {
+  transform: scale(1.02);
+}
+
+.gradient-1 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(74, 222, 128, 0.2)); }
+.gradient-2 { background: linear-gradient(135deg, rgba(74, 222, 128, 0.2), rgba(34, 197, 94, 0.2)); }
+.gradient-3 { background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(74, 222, 128, 0.3)); }
+.gradient-4 { background: linear-gradient(135deg, rgba(74, 222, 128, 0.3), rgba(34, 197, 94, 0.1)); }
+
+.project-icon {
+  width: 3rem;
+  height: 3rem;
+  color: var(--foreground);
+  opacity: 0.8;
+}
+
+.project-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.project-description {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.project-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.tool-badge {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: var(--secondary);
+  color: var(--secondary-foreground);
+  border-radius: 9999px;
+}
+
+.project-links {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Contact Section */
+.contact {
+  padding: 6rem 0;
+}
+
+.contact-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contact-intro {
+  font-size: 1.125rem;
+  color: var(--muted-foreground);
+  line-height: 1.75;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact-icon-wrapper {
+  padding: 0.75rem;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.contact-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--primary);
+}
+
+.contact-label {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.contact-value {
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.contact-value:hover {
+  color: var(--primary);
+}
+
+.contact-value-static {
+  font-weight: 500;
+}
+
+.contact-socials {
+  padding-top: 1rem;
+}
+
+.social-links-dark {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.social-link-dark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--foreground);
+  color: var(--background);
+  transition: all 0.2s ease;
+}
+
+.social-link-dark:hover {
+  background: var(--primary);
+  color: var(--foreground);
+}
+
+.social-link-dark svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Contact Form */
+.contact-form-card {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(212, 229, 217, 0.5);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.form-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+.form-textarea {
+  resize: none;
+}
+
+/* Footer */
+.footer {
+  background: var(--foreground);
+  color: var(--background);
+  padding: 2rem 0;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.footer-text {
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-link {
+  color: rgba(248, 253, 249, 0.6);
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--primary);
+}
+
+.footer-link svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Animation for success state */
+.btn.success {
+  background: var(--primary);
+}
+
+
+
+ /* --- AI Ask Anything Widget (replaces buttons) --- */
+    .ai-widget {
+      width: 100%;
+      max-width: 100%;
+      background: var(--card);
+      border-radius: 2rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s ease;
+    }
+
+    .ai-input-group {
+      display: flex;
+      align-items: center;
+      background: white;
+      border-radius: 2rem;
+      padding: 0.25rem 0.25rem 0.25rem 1.25rem;
+      gap: 0.5rem;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .ai-input-group:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+    }
+
+    .ai-icon {
+      color: var(--primary);
+      font-size: 1.35rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .ai-input {
+      flex: 1;
+      border: none;
+      padding: 0.9rem 0;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      background: transparent;
+      outline: none;
+      color: var(--foreground);
+    }
+
+    .ai-input::placeholder {
+      color: var(--muted-foreground);
+      font-weight: 400;
+    }
+
+    .ai-submit {
+      background: var(--primary);
+      border: none;
+      border-radius: 2rem;
+      padding: 0.6rem 1.4rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--foreground);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .ai-submit:hover {
+      background: var(--primary-dark);
+      transform: scale(0.97);
+    }
+
+    .ai-submit i {
+      font-size: 1.1rem;
+    }
+
+    .ai-response {
+      margin-top: 1rem;
+      background: var(--muted);
+      border-radius: 1.25rem;
+      padding: 1rem 1.25rem;
+      font-size: 0.9rem;
+      color: var(--foreground);
+      transition: all 0.2s;
+      line-height: 1.5;
+    }
+
+    .ai-response-placeholder {
+      color: var(--muted-foreground);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .ai-response-placeholder i {
+      font-size: 1rem;
+    }
+.btn.success svg {
+  stroke: var(--foreground);
+}
+
+    </style>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <span class="logo-text">LUFU</span><span class="logo-accent">NO</span>
+      </a>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg class="icon-close hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden" id="mobileMenu">
+      <ul class="mobile-nav-links">
+        <li><a href="#home" class="mobile-nav-link">Home</a></li>
+        <li><a href="#about" class="mobile-nav-link">About</a></li>
+        <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
+        <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
+        <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-bg">
+      <div class="hero-blob hero-blob-1"></div>
+      <div class="hero-blob hero-blob-2"></div>
+    </div>
+    
+    <div class="container hero-content">
+      <div class="hero-grid">
+        <!-- Text Content -->
+        <div class="hero-text">
+          <div class="status-badge">
+            <span class="status-dot"></span>
+           Midlevel Developer
+          </div>
+          
+          <h1 class="hero-title">
+            Software <br> <span class="text-primary">Developer</span>
+          </h1>
+          
+          <p class="hero-description">
+            Computer Science Student at University of Venda. Front-end Developer, CEO of Amour Tech , and Creative Problem Solver building human-centered digital experiences.
+          </p>
+          
+       <div class="ai-widget">
+          <div class="ai-input-group">
+            <i class="ri-question-answer-line ai-icon"></i>
+            <input type="text" id="aiQuery" class="ai-input" placeholder="Ask anything about my work, skills, or projects..." autocomplete="off">
+            <button id="askBtn" class="ai-submit"><i class="ri-sparkling-line"></i> Ask AI</button>
+          </div>
+          <div id="aiResponseBox" class="ai-response">
+            <div class="ai-response-placeholder">
+              <i class="ri-information-line"></i> ✨ Ask me anything — portfolio insights, tech stack, or career advice.
+            </div>
+          </div>
+        </div>
+          
+          <div class="hero-socials">
+            <span class="social-label">Find me on</span>
+            <div class="social-links">
+              <a href="https://github.com/LufunoMiles" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/mukwevho-lufuno-9ba9411b7/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              <a href="mailto:mukwevholufuno458@gmail.com" class="social-link" aria-label="Email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Hero Avatar -->
+        <div class="hero-avatar-container">
+          <div class="avatar-wrapper">
+            <div class="avatar-ring avatar-ring-1"></div>
+            <div class="avatar-ring avatar-ring-2"></div>
+            <div class="avatar-circle">
+              <div class="avatar-content">
+                <!-- <div class="avatar-initials">LM</div>
+                <p class="avatar-name">Mukwevho Lufuno</p>
+                <p class="avatar-role">Midlevel Developer</p> -->
+       <img src="https://mukwevholufuno.netlify.app/img/headset%20-%20img.webp" alt="">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">About Me</p>
+        <h2 class="section-title">Passionate about crafting elegant digital solutions</h2>
+      </div>
+      
+      <div class="about-grid">
+        <!-- Bio -->
+        <div class="about-bio">
+          <p class="bio-text">
+            Hi, I'm <strong>Mukwevho Lufuno</strong> - a second-year Computer Science student at the University of Venda, passionate about blending front-end creativity with backend logic.
+          </p>
+          <p class="bio-text">
+            I'm former <strong>Chairperson at Geekulcha Student Society (GKSS UNIVEN)</strong> and mentoring young minds for the ESKOM Science Expo. My focus areas include UI/UX, and Software Engineering.
+          </p>
+          <p class="bio-text">
+            <strong>Career Goal:</strong> To become a full-stack architect and launch innovative tech startups that bridge education and accessibility in South Africa.
+          </p>
+          
+          <!-- Highlights -->
+          <div class="highlights-grid">
+            <div class="highlight-card">
+              <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              <p class="highlight-title">Dean's List</p>
+              <p class="highlight-desc">Consistent academic excellence</p>
+            </div>
+            <div class="highlight-card">
+              <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <p class="highlight-title">Community Leader</p>
+              <p class="highlight-desc">GDG Limpopo</p>
+            </div>
+            <div class="highlight-card">
+              <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+              <p class="highlight-title">Kiddathon</p>
+              <p class="highlight-desc">AfreeConnect</p>
+            </div>
+            <div class="highlight-card">
+              <svg class="highlight-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              <p class="highlight-title">Tech Entrepreneur</p>
+              <p class="highlight-desc">CEO of  <a href="https://amourtech.co.za" target="_blank" rel="noopener noreferrer">Amour Tech</a></p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Timeline -->
+        <div class="about-timeline">
+          <h3 class="timeline-heading">Journey</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <span class="timeline-year">Present</span>
+              <h4 class="timeline-title">KMDEV </h4>
+              <p class="timeline-desc">Building front end interfaces</p>
+            </div>
+                 <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <span class="timeline-year">2025-2026</span>
+              <h4 class="timeline-title">GKSS Chairperson</h4>
+              <p class="timeline-desc">GEEKLUCHA
+
+              </p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <span class="timeline-year">2023 - Present</span>
+              <h4 class="timeline-title">BSc Computer Science</h4>
+              <p class="timeline-desc">University of Venda </p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <span class="timeline-year">2021-2023</span>
+              <h4 class="timeline-title">Junior Front-end Intern @ Amour Technology</h4>
+              <p class="timeline-desc">Built interactive dashboards, collaborated on UI/UX projects.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <span class="timeline-year">2021</span>
+              <h4 class="timeline-title">High School </h4>
+              <p class="timeline-desc">Vhafama Secondary School.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Skills</p>
+        <h2 class="section-title">Technical Arsenal</h2>
+      </div>
+      
+      <div class="skills-grid">
+        <!-- Frontend -->
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-icon-wrapper">
+              <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3 class="skill-card-title">Frontend Mastery</h3>
+          </div>
+          <div class="skill-bars">
+            <div class="skill-bar-item" data-level="92">
+              <div class="skill-bar-header">
+                <span class="skill-name">HTML5 / CSS3</span>
+                <span class="skill-percent">92%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item" data-level="80">
+              <div class="skill-bar-header">
+                <span class="skill-name">JavaScript (ES6+)</span>
+                <span class="skill-percent">80%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item" data-level="75">
+              <div class="skill-bar-header">
+                <span class="skill-name">React.js</span>
+                <span class="skill-percent">75%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item" data-level="88">
+              <div class="skill-bar-header">
+                <span class="skill-name">Responsive Design</span>
+                <span class="skill-percent">88%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Backend -->
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-icon-wrapper">
+              <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+            <h3 class="skill-card-title">Backend & Tools</h3>
+          </div>
+          <div class="skill-bars">
+            <div class="skill-bar-item" data-level="68">
+              <div class="skill-bar-header">
+                <span class="skill-name">Python / Flask</span>
+                <span class="skill-percent">68%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item" data-level="70">
+              <div class="skill-bar-header">
+                <span class="skill-name">PHP / MySQL</span>
+                <span class="skill-percent">70%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item" data-level="65">
+              <div class="skill-bar-header">
+                <span class="skill-name">Java (OOP)</span>
+                <span class="skill-percent">65%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item" data-level="85">
+              <div class="skill-bar-header">
+                <span class="skill-name">Git & GitHub</span>
+                <span class="skill-percent">85%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Design -->
+        <div class="skill-card">
+          <div class="skill-card-header">
+            <div class="skill-icon-wrapper">
+              <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"/></svg>
+            </div>
+            <h3 class="skill-card-title">Design & HCI</h3>
+          </div>
+          <div class="skill-bars">
+            <div class="skill-bar-item" data-level="82">
+              <div class="skill-bar-header">
+                <span class="skill-name">UI/UX Principles</span>
+                <span class="skill-percent">82%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item" data-level="70">
+              <div class="skill-bar-header">
+                <span class="skill-name">Figma</span>
+                <span class="skill-percent">70%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+            <div class="skill-bar-item" data-level="78">
+              <div class="skill-bar-header">
+                <span class="skill-name">Usability Testing</span>
+                <span class="skill-percent">78%</span>
+              </div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Portfolio</p>
+        <h2 class="section-title">Featured Projects</h2>
+      </div>
+      
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <article class="project-card">
+          <div class="project-icon-wrapper gradient-1">
+            <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          </div>
+          <h3 class="project-title">Text To Speech</h3>
+          <p class="project-description">Accessible web app that converts written content into natural speech using Web Speech API. Supports multiple languages and pitch control.</p>
+          <div class="project-tools">
+            <span class="tool-badge">JavaScript</span>
+            <span class="tool-badge">HTML5</span>
+            <span class="tool-badge">SpeechSynthesis</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="btn btn-outline btn-sm">
+              <svg class="btn-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live Demo
+            </a>
+            <a href="https://github.com/LufunoMiles" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">
+              <svg class="btn-icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              Code
+            </a>
+          </div>
+        </article>
+        
+        <!-- Project 2 -->
+        <article class="project-card">
+          <div class="project-icon-wrapper gradient-2">
+            <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
+          <h3 class="project-title">StudCon</h3>
+          <p class="project-description">Study companion platform connecting university students for collaborative learning, resource sharing, and event management.</p>
+          <div class="project-tools">
+            <span class="tool-badge">React</span>
+            <span class="tool-badge">Firebase</span>
+            <span class="tool-badge">CSS</span>
+          </div>
+          <div class="project-links">
+            <a href="https://studcon.amourtech.co.za" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+              <svg class="btn-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live Demo
+            </a>
+            <a href="https://github.com/LufunoMiles/studcon" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">
+              <svg class="btn-icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              Code
+            </a>
+          </div>
+        </article>
+        
+        <!-- Project 3 -->
+        <article class="project-card">
+          <div class="project-icon-wrapper gradient-3">
+            <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3 class="project-title">Promodoro Focus Timer</h3>
+          <p class="project-description">Minimalist productivity timer based on Pomodoro technique with task logging and ambient sounds. Increases focus cycles.</p>
+          <div class="project-tools">
+            <span class="tool-badge">Vanilla JS</span>
+            <span class="tool-badge">LocalStorage</span>
+            <span class="tool-badge">CSS Grid</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="btn btn-outline btn-sm">
+              <svg class="btn-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live Demo
+            </a>
+            <a href="https://github.com/LufunoMiles/promodoro.git" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">
+              <svg class="btn-icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              Code
+            </a>
+          </div>
+        </article>
+        
+        <!-- Project 4 -->
+        <article class="project-card">
+          <div class="project-icon-wrapper gradient-4">
+            <svg class="project-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <h3 class="project-title">Student Management System</h3>
+          <p class="project-description">CRUD application to manage student records, courses, and grades. Backend using PHP/MySQL with secure authentication.</p>
+          <div class="project-tools">
+            <span class="tool-badge">PHP</span>
+            <span class="tool-badge">MySQL</span>
+            <span class="tool-badge">Bootstrap</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="btn btn-outline btn-sm">
+              <svg class="btn-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live Demo
+            </a>
+            <a href="https://github.com/LufunoMiles/studentmanagementsystem.git" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">
+              <svg class="btn-icon-sm" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              Code
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title">Let's Connect</h2>
+      </div>
+      
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <p class="contact-intro">Available for collaborations, mentorship, or just a tech chat. Let's create impact together!</p>
+          
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon-wrapper">
+                <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <p class="contact-label">Email</p>
+                <a href="mailto:mukwevholufuno458@gmail.com" class="contact-value">mukwevholufuno458@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon-wrapper">
+                <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <p class="contact-label">Phone</p>
+                <a href="tel:+27761234567" class="contact-value">+27 76 123 4567</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon-wrapper">
+                <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <p class="contact-label">Location</p>
+                <p class="contact-value-static">Limpopo / Johannesburg, SA</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="contact-socials">
+            <p class="social-label">Follow me on</p>
+            <div class="social-links-dark">
+              <a href="https://github.com/LufunoMiles" target="_blank" rel="noopener noreferrer" class="social-link-dark" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/mukwevho-lufuno-9ba9411b7/" target="_blank" rel="noopener noreferrer" class="social-link-dark" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              <a href="#" class="social-link-dark" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="contact-form-card">
+          <h3 class="form-title">Send a message</h3>
+          <form id="contactForm" class="contact-form">
+            <div class="form-group">
+              <input type="text" id="name" name="name" placeholder="Your Name" required class="form-input">
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" name="email" placeholder="Email Address" required class="form-input">
+            </div>
+            <div class="form-group">
+              <textarea id="message" name="message" placeholder="Tell me about your project or idea..." rows="4" class="form-textarea"></textarea>
+            </div>
+            <button type="submit" id="submitBtn" class="btn btn-primary btn-full">
+              <svg class="btn-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              <span id="submitText">Send Message</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p class="footer-text">&copy; 2025 Mukwevho Lufuno. Human-centric developer. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/LufunoMiles" target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/mukwevho-lufuno-9ba9411b7/" target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js">
+
+     // ----- AI ASK ANYTHING (intelligent responses based on portfolio context) -----
+  const askBtn = document.getElementById('askBtn');
+  const aiQueryInput = document.getElementById('aiQuery');
+  const aiResponseBox = document.getElementById('aiResponseBox');
+
+  function getAIResponse(query) {
+    const q = query.toLowerCase().trim();
+    if (!q) return "👋 Please ask something about my skills, projects, or background!";
+    
+    // Smart contextual answers
+    if (q.includes('skill') || q.includes('tech stack') || q.includes('technologies')) {
+      return "💻 I'm proficient in HTML/CSS, JavaScript, React, PHP/MySQL, Python, Git, and UI/UX principles. Currently expanding backend & AI knowledge.";
+    }
+    if (q.includes('project') || q.includes('portfolio')) {
+      return "🚀 Featured projects: Text-To-Speech (Web Speech API), StudCon (React/Firebase collab platform), Promodoro Focus Timer, and Student Management System (PHP/MySQL).";
+    }
+    if (q.includes('experience') || q.includes('work')) {
+      return "🧑‍💻 I'm a Midlevel Developer, Chairperson at GKSS UNIVEN, and CEO of Amourtech.co.za. I mentor at ESKOM Science Expo and lead dev workshops.";
+    }
+    if (q.includes('education') || q.includes('study')) {
+      return "🎓 BSc Computer Science at University of Venda (2nd year). Specializing in Algorithms, HCI, and Software Engineering. Dean's List honoree.";
+    }
+    if (q.includes('contact') || q.includes('email')) {
+      return "📬 Reach me at mukwevholufuno458@gmail.com or connect via LinkedIn/GitHub (icons above). Let's collaborate!";
+    }
+    if (q.includes('career') || q.includes('goal')) {
+      return "🎯 Career goal: Become a full-stack architect and launch innovative tech startups bridging education & accessibility in South Africa.";
+    }
+    if (q.includes('hello') || q.includes('hi') || q.includes('hey')) {
+      return "👋 Hey there! I'm Lufuno. Ask me about my dev journey, tech stack, or projects!";
+    }
+    return "🤖 Hmm, I can answer about skills, projects, experience, education, or contact. Try: 'What projects have you built?' or 'What's your tech stack?'";
+  }
+
+  function updateResponse(text) {
+    aiResponseBox.innerHTML = `<div style="display:flex; gap:0.5rem; align-items:flex-start"><i class="ri-sparkling-line" style="color:var(--primary)"></i><span>${text}</span></div>`;
+  }
+
+  askBtn.addEventListener('click', () => {
+    const question = aiQueryInput.value;
+    const answer = getAIResponse(question);
+    updateResponse(answer);
+    if(question) aiQueryInput.value = '';
+  });
+
+  aiQueryInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      askBtn.click();
+    }
+  });
+  </script>
+</body>
+</html>
